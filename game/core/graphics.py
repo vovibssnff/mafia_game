@@ -13,15 +13,17 @@ def show_graphics_1(X, Y, Z):
     colors = plt.cm.ocean(Z / np.max(Z))
     # Create wireframe plot with shaded gradient effect
     ax1.bar3d(X, Y, zeros, 1, 1, Z, shade=True, color=colors)
-    if count == 1:
-        ax1.set_title('Mafia winning probability without doctor')
-    else:
-        ax1.set_title('Mafia winning probability with doctor')
     ax1.set_xlabel('N')
     ax1.set_ylabel('M')
     ax1.set_zlabel('Winning probability')
+    if count == 1:
+        ax1.set_title('Mafia winning probability without doctor')
+        plt.savefig('plot1.png')
+    else:
+        ax1.set_title('Mafia winning probability with doctor')
+        plt.savefig('plot2.png')
 
-    return ax1
+
 
 
 def show_graphics_3(n, m, diffs):
@@ -40,5 +42,5 @@ def show_graphics_3(n, m, diffs):
     ax.set_zlabel('Difference')
     plt.title('Difference in chances for equal N, M, and different D')
 
-    return ax
+    plt.savefig('plot3.png')
 

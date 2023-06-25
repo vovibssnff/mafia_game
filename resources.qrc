@@ -1,11 +1,11 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-    <file>pyqt5_qtquick2_example/qml/main.qml</file>
-    <file>pyqt5_qtquick2_example/qml/CellBox.qml</file>
-    <file>pyqt5_qtquick2_example/qml/LargeChartView.qml</file>
-    <file>pyqt5_qtquick2_example/qml/SideNavButton.qml</file>
-    <file>pyqt5_qtquick2_example/images/baseline-category-24px.svg</file>
-    <file>pyqt5_qtquick2_example/images/baseline-menu-24px.svg</file>
-    <file>pyqt5_qtquick2_example/images/baseline-more_vert-24px.svg</file>
+    <file>game/qml/main.qml</file>
+    <file>game/qml/CellBox.qml</file>
+    <file>game/qml/LargeChartView.qml</file>
+    <file>game/qml/SideNavButton.qml</file>
+    <file>game/images/plot1.png</file>
+    <file>game/images/plot2.png</file>
+    <file>game/images/plot3.png</file>
 </qresource>
 </RCC>
