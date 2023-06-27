@@ -90,6 +90,7 @@ ApplicationWindow {
                         Layout.alignment: Qt.AlignHCenter
                         onClicked: {
                             frontend_handler.on_start_clicked()
+                            //imageLogo.refresh()
                         }
                     }
                 }
@@ -116,8 +117,19 @@ ApplicationWindow {
                     Rectangle {
                         width: 640
                         height: 480
+                        // function reloadImage() {
+                        //     var oldSource = imageLogo.source
+                        //     imageLogo.source = ""
+                        //     imageLogo.source = oldSource
+                        // }//function to refresh the source
                         Image {
-                             source: "plot1.png"
+                            id: imageLogo
+                            cache: false
+                            anchors.fill: parent
+                            //anchors.leftMargin: 20
+                            Layout.preferredWidth: Math.round(parent.width / 1.5)
+                            Layout.preferredHeight: Math.round(parent.height * 2)
+                            source: "qrc:game/qml/plot1.png"
                         }
                     }
                 }
@@ -126,7 +138,7 @@ ApplicationWindow {
                         width: 640
                         height: 480
                         Image {
-                             source: "plot2.png"
+                             source: "qrc:/game/qml/plot2.png"
                         }
                     }
                 }
@@ -136,7 +148,7 @@ ApplicationWindow {
                         width: 640
                         height: 480
                         Image {
-                             source: "plot3.png"
+                             source: "qrc:game/qml/plot3.png"
                         }
                     }
                 }

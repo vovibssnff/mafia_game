@@ -12,6 +12,7 @@ class frontend_handler(QObject):
     switchValueChanged = pyqtSignal(int)
     startButtonClicked = pyqtSignal()
     updateOutput = pyqtSignal()
+    updateImage = pyqtSignal()
     out_text = ""
     n = 50
     m = 1
@@ -20,18 +21,17 @@ class frontend_handler(QObject):
     @pyqtProperty(str, notify=updateOutput)
     def output(self) -> str:
         print(self.out_text)
-        # print("shit shit shit")
         return self.out_text
 
     # Текстовое поле
     @pyqtSlot()
     def on_start_clicked(self):
-        graphics.show_graphics_1(self.n, self.m, 0)
-        graphics.show_graphics_1(self.n, self.m, 1)
-        graphics.show_graphics_3()
+        launcher.calculate_graphics_1(self.n, self.m)
+        launcher.calculate_graphics_2(self.n, self.m)
+        launcher.calculate_graphics_3(self.n, self.m)
         frontend_handler.out_text = launcher.calculate(frontend_handler.n, frontend_handler.m, frontend_handler.d)
-        # print(frontend_handler.out_text)
         self.updateOutput.emit()
+        self.updateImage.emit()
 
     # 1-й слайдер
     @pyqtSlot(int)
@@ -64,6 +64,6 @@ frontend_handler = frontend_handler()
 
 engine.rootContext().setContextProperty("frontend_handler", frontend_handler)
 
-engine.load("/home/vovi/PycharmProjects/pyqt5-qtquick2-example-master/pyqt5-qtquick2-example-master/game/qml/main.qml")
+engine.load("game/qml/main.qml")
 
 app.exec_()

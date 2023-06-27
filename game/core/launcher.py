@@ -43,4 +43,14 @@ def calculate_graphics_2(n, m):
                 res_2.append(res)
     graphics.show_graphics_1(n_2, m_2, res_2)
 
-def calculate_graphics_3():
+def calculate_graphics_3(n, m):
+    for i in range(2, n):
+        for j in range(1, m+1):
+            answer1 = w(i, j, 0)
+            answer2 = w(i, j, 1)
+            res = abs(round(float(answer2-answer1), 5))
+            n_3.append(i)
+            m_3.append(j)
+            res_3.append(res)
+    graphics.show_graphics_3(n_3, m_3, res_3)
+

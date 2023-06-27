@@ -18,10 +18,10 @@ def show_graphics_1(X, Y, Z):
     ax1.set_zlabel('Winning probability')
     if count == 1:
         ax1.set_title('Mafia winning probability without doctor')
-        plt.savefig('plot1.png')
+        plt.savefig('/game/qml/plot1.png')
     else:
         ax1.set_title('Mafia winning probability with doctor')
-        plt.savefig('plot2.png')
+        plt.savefig('./game/qml/plot2.png', format="png")
 
 
 
@@ -42,5 +42,5 @@ def show_graphics_3(n, m, diffs):
     ax.set_zlabel('Difference')
     plt.title('Difference in chances for equal N, M, and different D')
 
-    plt.savefig('plot3.png')
+    plt.savefig('/game/qml/plot3.png', format="png")
 
