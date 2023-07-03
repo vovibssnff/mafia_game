@@ -29,31 +29,31 @@ class frontend_handler(QObject):
         launcher.calculate_graphics_1(self.n, self.m)
         launcher.calculate_graphics_2(self.n, self.m)
         launcher.calculate_graphics_3(self.n, self.m)
-        frontend_handler.out_text = launcher.calculate(frontend_handler.n, frontend_handler.m, frontend_handler.d)
+        self.out_text = launcher.calculate(self.n, self.m, self.d)
         self.updateOutput.emit()
-        self.updateImage.emit()
 
     # 1-й слайдер
     @pyqtSlot(int)
     def on_n_spinbox_update(self, value):
         print("n" + str(value))
-        frontend_handler.n = value
+        self.n = value
         self.spinBox1ValueChanged.emit(value)
 
     # 2-й слайдер
     @pyqtSlot(int)
     def on_m_spinbox_update(self, value):
         print("m" + str(value))
-        frontend_handler.m = value
+        self.m = value
         self.spinBox2ValueChanged.emit(value)
 
     # переклюк
     @pyqtSlot(bool)
     def on_d_switch_update(self, state):
         value = 1 if state else 0
-        frontend_handler.d = value
-        print(frontend_handler.d)
+        self.d = value
+        print(self.d)
         self.switchValueChanged.emit(value)
+
 
 os.environ['QT_QUICK_CONTROLS_STYLE'] = "Material"
 

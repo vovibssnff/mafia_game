@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 count = 0
 
@@ -18,12 +19,22 @@ def show_graphics_1(X, Y, Z):
     ax1.set_zlabel('Winning probability')
     if count == 1:
         ax1.set_title('Mafia winning probability without doctor')
-        plt.savefig('/game/qml/plot1.png')
-    else:
+        plt_1 = './game/qml/plot1.png'
+        if os.path.isfile(plt_1):
+            os.remove(plt_1)
+        plt.savefig(plt_1)
+        print(count)
+        plt.close()
+    
+    if count == 2:
         ax1.set_title('Mafia winning probability with doctor')
-        plt.savefig('./game/qml/plot2.png', format="png")
-
-
+        plt_2 = './game/qml/plot2.png'
+        if os.path.isfile(plt_2):
+            os.remove(plt_2)
+        plt.savefig(plt_2)
+        print(count)
+        plt.close()
+        count = 0
 
 
 def show_graphics_3(n, m, diffs):
@@ -42,5 +53,5 @@ def show_graphics_3(n, m, diffs):
     ax.set_zlabel('Difference')
     plt.title('Difference in chances for equal N, M, and different D')
 
-    plt.savefig('/game/qml/plot3.png', format="png")
+    plt.savefig('./game/qml/plot3.png', dpi=200)
 

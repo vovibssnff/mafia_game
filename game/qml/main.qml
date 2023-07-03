@@ -35,6 +35,9 @@ ApplicationWindow {
                 title: 'Параметры запуска'
                 ColumnLayout {
                     anchors.fill: parent
+                    Label {
+                        text: "Игроки (N)"
+                    }
                     SpinBox {
                         id: nSpinBox
                         value: 50
@@ -44,7 +47,9 @@ ApplicationWindow {
                             frontend_handler.on_n_spinbox_update(value)
                         }
                     }
-
+                    Label {
+                        text: "Мафия (M)"
+                    }
                     SpinBox {
                         id: mSpinBox
                         value: Math.min(nSpinBox.value, mSpinBox.value)
@@ -55,7 +60,9 @@ ApplicationWindow {
                             frontend_handler.on_m_spinbox_update(value)
                         }
                     }
-
+                    Label {
+                        text: "Доктор (D)"
+                    }
                     Switch {
                         id: switch1
                         Layout.alignment: Qt.AlignHCenter
@@ -90,7 +97,25 @@ ApplicationWindow {
                         Layout.alignment: Qt.AlignHCenter
                         onClicked: {
                             frontend_handler.on_start_clicked()
+                            reload_images()
+
+                            //img_3.reload_image()
                             //imageLogo.refresh()
+                        }
+                        function reload_images() {
+                            
+                            var plt_source_1 = image_plot_1.source
+                            image_plot_1.source = ""
+                            image_plot_1.source = plt_source_1
+                            
+                            var plt_source_2 = image_plot_2.source
+                            image_plot_2.source = ""
+                            image_plot_2.source = plt_source_2
+                            
+                            var plt_source_3 = image_plot_3.source
+                            image_plot_3.source = ""
+                            image_plot_3.source = plt_source_3
+
                         }
                     }
                 }
@@ -115,40 +140,46 @@ ApplicationWindow {
                 currentIndex: bar.currentIndex
                 LargeChartView {
                     Rectangle {
-                        width: 640
-                        height: 480
-                        // function reloadImage() {
-                        //     var oldSource = imageLogo.source
-                        //     imageLogo.source = ""
-                        //     imageLogo.source = oldSource
-                        // }//function to refresh the source
+                        id: rectangle_1
+                        width: parent.width
+                        height: parent.height
                         Image {
-                            id: imageLogo
-                            cache: false
-                            anchors.fill: parent
-                            //anchors.leftMargin: 20
-                            Layout.preferredWidth: Math.round(parent.width / 1.5)
-                            Layout.preferredHeight: Math.round(parent.height * 2)
-                            source: "qrc:game/qml/plot1.png"
+                            id: image_plot_1
+                            source: "plot1.png"
+                            anchors.fill: rectangle_1
                         }
                     }
                 }
                 LargeChartView {
                     Rectangle {
-                        width: 640
-                        height: 480
+                        id: rectangle_2
+                        width: parent.width
+                        height: parent.height
                         Image {
-                             source: "qrc:/game/qml/plot2.png"
+                            id: image_plot_2
+                            source: "plot2.png"
+                            anchors.fill: rectangle_2
                         }
                     }
                 }
-                //TODO
                 LargeChartView {
                     Rectangle {
-                        width: 640
-                        height: 480
+                        width: parent.width  // Width of the rectangle
+                        height: parent.height  // Height of the rectangle
+                        color: "white"
+
                         Image {
-                             source: "qrc:game/qml/plot3.png"
+                            id: image_plot_3
+                            source: "plot3.png"
+                            anchors.centerIn: parent  // Center the image within the rectangle
+
+                            // Calculate the maximum size of the image based on the rectangle size
+                            property int maxWidth: parent.width * 0.55
+                            property int maxHeight: parent.height * 0.8
+
+                            // Maintain the image's aspect ratio
+                            width: Math.min(maxWidth, image_plot_3.sourceSize.width)
+                            height: Math.min(maxHeight, image_plot_3.sourceSize.height)
                         }
                     }
                 }
@@ -163,10 +194,9 @@ ApplicationWindow {
                             clip: true
                             ScrollBar.vertical.policy: ScrollBar.AlwaysOn
                             ScrollBar.vertical.implicitWidth: 20
-
                             TextArea {
                                 id: outputField
-                                width: ScrollView.width // Set explicit width
+                                width: ScrollView.width
                                 height: contentHeight
                                 readOnly: true
                                 wrapMode: TextArea.Wrap
